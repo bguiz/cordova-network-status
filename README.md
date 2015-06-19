@@ -1,8 +1,11 @@
 # `cordova-network-status`
 
+Wrapper around the standard Cordova network connectivity status features,
+plus WinJS'/ Windows Phone's alternative, and incompatible APIs that acomplish the same thing.
+
 ## Status
 
-This project is merely a demo, and is very much a work in progress.
+This project is merely a demo, and is very much a **work in progress**.
 If anything works, or is even complete... that's a bonus!
 
 ## Instructions
