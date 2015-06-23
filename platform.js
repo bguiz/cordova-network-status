@@ -1,11 +1,30 @@
+/* globals console, angular */
 'use strict';
 
-(function (global) {
+(function(root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define('cordova-network-status', [
+      ], factory);
+  }
+  else if (typeof exports === 'object') {
+    module.exports = factory(
+      );
+  }
+  else {
+    root.CordovaNetworkStatus = factory(
+      );
+  }
+})(this, setUpCordovaNetworkStatus);
 
-  global.CordovaNetworkStatus = global.CordovaNetworkStatus || {};
+function setUpCordovaNetworkStatus() {
+  var CordovaNetworkStatus = {};
 
-  global.CordovaNetworkStatus.initialise = platform_initialise;
-  global.CordovaNetworkStatus.registerStatusChangeListener = status_registerChangeListener;
+  CordovaNetworkStatus.initialise =
+    platform_initialise;
+  CordovaNetworkStatus.registerStatusChangeListener =
+    status_registerChangeListener;
+
+  return CordovaNetworkStatus;
 
   var parseNetworkStatus, registerListener;
 
@@ -114,4 +133,4 @@
     return category;
   }
 
-})(this);
+}
