@@ -1,6 +1,6 @@
 {
   "name": "cordova-network-status",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Notify of network connectivity status changes in Cordova apps",
   "main": "platform.js",
   "scripts": {
