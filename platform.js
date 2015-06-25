@@ -36,13 +36,13 @@ function setUpCordovaNetworkStatus() {
       console.log('Initialising platform-specific functions for Windows-flavoured cordova');
       parseNetworkStatus = _windows_parseNetworkStatus;
       registerListener = _windows_registerListener;
-      status_getCurrent =_windows_parseNetworkStatus;
+      CordovaNetworkStatus.getCurrent = status_getCurrent =_windows_status_getCurrent;
     }
     else {
       console.log('Initialising platform-specific functions for regular cordova');
       parseNetworkStatus = _regular_parseNetworkStatus;
       registerListener = _regular_registerListener;
-      status_getCurrent =_regular_parseNetworkStatus;
+      CordovaNetworkStatus.getCurrent = status_getCurrent =_regular_status_getCurrent;
     }
   }
 
