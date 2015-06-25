@@ -24,7 +24,7 @@ function setUpCordovaNetworkStatus() {
   CordovaNetworkStatus.registerStatusChangeListener =
       status_registerChangeListener;
   CordovaNetworkStatus.getStatus =
-      get_status();
+      get_status;
 
   return CordovaNetworkStatus;
 
