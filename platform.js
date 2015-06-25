@@ -4,15 +4,15 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define('cordova-network-status', [
-      ], factory);
+    ], factory);
   }
   else if (typeof exports === 'object') {
     module.exports = factory(
-      );
+    );
   }
   else {
     root.CordovaNetworkStatus = factory(
-      );
+    );
   }
 })(this, setUpCordovaNetworkStatus);
 
@@ -20,9 +20,11 @@ function setUpCordovaNetworkStatus() {
   var CordovaNetworkStatus = {};
 
   CordovaNetworkStatus.initialise =
-    platform_initialise;
+      platform_initialise;
   CordovaNetworkStatus.registerStatusChangeListener =
-    status_registerChangeListener;
+      status_registerChangeListener;
+  CordovaNetworkStatus.getStatus =
+      get_status();
 
   return CordovaNetworkStatus;
 
@@ -41,6 +43,10 @@ function setUpCordovaNetworkStatus() {
       registerListener = _regular_registerListener;
     }
 
+  }
+
+  function get_status() {
+    return _windows_parseNetworkStatus();
   }
 
   var networkStatusChangeCallback;
@@ -72,7 +78,7 @@ function setUpCordovaNetworkStatus() {
   function _windows_registerListener(shouldListen) {
     var listenMethod = (!!shouldListen ? 'addEventListener' : 'removeEventListener');
     global.Windows.Networking.Connectivity.NetworkInformation
-      [listenMethod]('networkstatuschanged', networkStatusChangeListener);
+        [listenMethod]('networkstatuschanged', networkStatusChangeListener);
   }
 
   // Cached, because sometime the change event fire multiple times but yields the same status
@@ -94,12 +100,12 @@ function setUpCordovaNetworkStatus() {
 
   function _windows_parseNetworkStatus(evt) {
     var networkProfile = global.Windows.Networking.Connectivity.NetworkInformation
-      .getInternetConnectionProfile();
+        .getInternetConnectionProfile();
     if (!networkProfile) {
       return 'none';
     }
     var currentLevel = networkProfile
-      .getNetworkConnectivityLevel();
+        .getNetworkConnectivityLevel();
     var levelConstants = global.Windows.Networking.Connectivity.NetworkConnectivityLevel;
     switch (currentLevel) {
       case levelConstants.none:
